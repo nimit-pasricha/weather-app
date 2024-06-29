@@ -70,22 +70,29 @@ svg {
   gap: 16px;
 }
 
-.weather > * {
+.weather > div {
   border-radius: 16px;
   padding: 32px;
   color: #f9fafb;
   background-color: rgb(96, 165, 250, 0.8);
 }
 
-.current-weather {
+div.current-weather {
   grid-column: 1 / -1;
-  display: grid;
-  grid-template-rows: 2fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 64px;
 }
 
-.location-name,
-.current-temperature {
+.current-weather > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name-and-temperature {
   font-size: 3rem;
-  grid-column: span 2;
+}
+
+.condition-and-feels-like {
+  margin-top: 16px;
+  font-size: 1.6rem;
 }
