@@ -20,6 +20,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   padding: 64px;
 }
 
@@ -34,7 +35,7 @@ input {
   font-size: 1.2rem;
   background-color: var(--search-bar-background-color);
   padding: 16px 24px;
-  width: 100ch;
+  width: 92ch;
   border-radius: 50px;
 }
 
@@ -57,4 +58,14 @@ button[type="submit"]:hover > svg {
 svg {
   fill: var(--search-button-svg-color);
   height: 2rem;
+}
+
+.weather {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.current-weather {
+  grid-column: 1 / -1;
 }
