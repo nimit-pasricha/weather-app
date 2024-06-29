@@ -68,17 +68,19 @@ async function fetchForecast(location) {
 
 async function processForecastData(location) {
   const allForecastData = await fetchForecast(location);
-  const threeDayForecastCelsius = [
-    getOneDayForecastCelsius(0, allForecastData),
-    getOneDayForecastCelsius(1, allForecastData),
-    getOneDayForecastCelsius(2, allForecastData),
-  ];
+  const numberOfDaysForecast = 3;
+
+  const threeDayForecastCelsius = [];
+  for (let i = 0; i < numberOfDaysForecast; i++) {
+    threeDayForecastCelsius.push(getOneDayForecastCelsius(i, allForecastData));
+  }
   console.log(threeDayForecastCelsius);
-  const threeDayForecastFahrenheit = [
-    getOneDayForecastFahrenheit(0, allForecastData),
-    getOneDayForecastFahrenheit(1, allForecastData),
-    getOneDayForecastFahrenheit(2, allForecastData),
-  ];
+  const threeDayForecastFahrenheit = [];
+  for (let i = 0; i < numberOfDaysForecast; i++) {
+    threeDayForecastFahrenheit.push(
+      getOneDayForecastFahrenheit(i, allForecastData)
+    );
+  }
   console.log(threeDayForecastFahrenheit);
 }
 
