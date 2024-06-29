@@ -17,14 +17,16 @@ body {
 }
 
 body {
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  grid-template-rows: 1fr 5fr;
+  grid-template-columns: 1fr;
   padding: 64px;
 }
 
 form {
+  grid-column: 1 / -1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,8 +37,8 @@ input {
   font-size: 1.2rem;
   background-color: var(--search-bar-background-color);
   padding: 16px 24px;
-  width: 92ch;
   border-radius: 50px;
+  width: 100%;
 }
 
 button[type="submit"] {
@@ -62,10 +64,19 @@ svg {
 
 .weather {
   display: grid;
-  grid-template-rows: 3fr 1fr;
+  grid-template-rows: 2fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
 }
 
 .current-weather {
   grid-column: 1 / -1;
+}
+
+.weather > * {
+  border-radius: 16px;
+  padding: 32px;
+  font-size: 1.6rem;
+  color: #f9fafb;
+  background-color: rgb(96, 165, 250, 0.8);
 }
