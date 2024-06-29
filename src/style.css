@@ -40,9 +40,18 @@ input {
 
 button[type="submit"] {
   background-color: var(--search-button-background-color);
-  height: 3.4rem;
-  width: 3.4rem;
+  height: 3.2rem;
+  width: 3.2rem;
   border-radius: 50%;
+  transition: 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--search-button-svg-color);
+}
+
+button[type="submit"]:hover > svg {
+  fill: var(--search-button-background-color);
 }
 
 svg {
