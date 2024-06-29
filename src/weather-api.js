@@ -50,7 +50,7 @@ function getCurrentWeatherFahrenheit(allWeatherData) {
     wind: allWeatherData.current.wind_mph,
     humidity: allWeatherData.current.humidity,
     uv: allWeatherData.current.uv,
-    precip: allWeatherData.current.precip_mm,
+    precip: allWeatherData.current.precip_in,
   };
 }
 

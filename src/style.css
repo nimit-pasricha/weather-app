@@ -63,20 +63,29 @@ svg {
 }
 
 .weather {
+  height: 100%;
   display: grid;
   grid-template-rows: 2fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
 }
 
-.current-weather {
-  grid-column: 1 / -1;
-}
-
 .weather > * {
   border-radius: 16px;
   padding: 32px;
-  font-size: 1.6rem;
   color: #f9fafb;
   background-color: rgb(96, 165, 250, 0.8);
+}
+
+.current-weather {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-rows: 2fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.location-name,
+.current-temperature {
+  font-size: 3rem;
+  grid-column: span 2;
 }
