@@ -1,4 +1,6 @@
-async function getCurrentWeather(location) {
+// CURRENT WEATHER
+
+async function fetchCurrentWeather(location) {
   const response = await fetch(
     `http://api.weatherapi.com/v1/current.json?key=ecfed383b46d4625a7131757242806&q=${location}&aqi=no`,
     { mode: "cors" }
@@ -8,7 +10,7 @@ async function getCurrentWeather(location) {
 }
 
 async function processCurrentWeatherData(location) {
-  const allWeatherData = await getCurrentWeather(location);
+  const allWeatherData = await fetchCurrentWeather(location);
 
   const locationData = getLocationInformation(allWeatherData);
 
@@ -56,7 +58,9 @@ function getCurrentWeatherFahrenheit(allWeatherData) {
   };
 }
 
-async function getForcast(location) {
+// FORECAST WEATHER
+
+async function fetchForecast(location) {
   const response = await fetch(
     `http://api.weatherapi.com/v1/forecast.json?key=ecfed383b46d4625a7131757242806&q=${location}&days=3&aqi=no&alerts=yes`,
     { mode: "cors" }
@@ -66,4 +70,25 @@ async function getForcast(location) {
   return forcastData;
 }
 
-export { processCurrentWeatherData, getForcast };
+async function processForecastData(location) {
+  const allForecastData = await fetchForecast(location);
+  const threeDayForecast = [
+    getOneDayForecastCelsius(0, allForecastData),
+    getOneDayForecastCelsius(1, allForecastData),
+    getOneDayForecastCelsius(2, allForecastData),
+  ];
+  console.log(threeDayForecast);
+}
+
+function getOneDayForecastCelsius(dayIndex, allForecastData) {
+  const forecastDay = allForecastData.forecast.forecastday[dayIndex];
+  return {
+    condition: forecastDay.day.condition.text,
+    date: forecastDay.date,
+    avgTemp: forecastDay.day.avgtemp_c,
+    maxTemp: forecastDay.day.maxtemp_c,
+    minTemp: forecastDay.day.mintemp_c,
+  };
+}
+
+export { processCurrentWeatherData, processForecastData };
