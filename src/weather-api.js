@@ -11,11 +11,8 @@ async function fetchCurrentWeather(location) {
 
 async function processCurrentWeatherData(location) {
   const allWeatherData = await fetchCurrentWeather(location);
-
   const locationData = getLocationInformation(allWeatherData);
-
   const currentWeatherDataCelsius = getCurrentWeatherCelsius(allWeatherData);
-
   const currentWeatherDataFahrenheit =
     getCurrentWeatherFahrenheit(allWeatherData);
 
