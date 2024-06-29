@@ -24,8 +24,20 @@ async function processCurrentWeatherData(location) {
     uv: allWeatherData.current.uv,
     isDay: allWeatherData.current.is_day,
   };
+
+  const currentWeatherDataFahrenheit = {
+    condition: allWeatherData.current.condition.text,
+    icon: allWeatherData.current.condition.icon,
+    temperature: allWeatherData.current.temp_f,
+    feelsLike: allWeatherData.current.feelslike_f,
+    wind: allWeatherData.current.wind_mph,
+    humidity: allWeatherData.current.humidity,
+    uv: allWeatherData.current.uv,
+    isDay: allWeatherData.current.is_day,
+  };
   console.log(locationData);
   console.log(currentWeatherDataCelsius);
+  console.log(currentWeatherDataFahrenheit);
 }
 
 export { processCurrentWeatherData };
