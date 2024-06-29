@@ -66,18 +66,23 @@ async function fetchForecast(location) {
     { mode: "cors" }
   );
   const forcastData = await response.json();
-  console.log(forcastData);
   return forcastData;
 }
 
 async function processForecastData(location) {
   const allForecastData = await fetchForecast(location);
-  const threeDayForecast = [
+  const threeDayForecastCelsius = [
     getOneDayForecastCelsius(0, allForecastData),
     getOneDayForecastCelsius(1, allForecastData),
     getOneDayForecastCelsius(2, allForecastData),
   ];
-  console.log(threeDayForecast);
+  console.log(threeDayForecastCelsius);
+  const threeDayForecastFahrenheit = [
+    getOneDayForecastFahrenheit(0, allForecastData),
+    getOneDayForecastFahrenheit(1, allForecastData),
+    getOneDayForecastFahrenheit(2, allForecastData),
+  ];
+  console.log(threeDayForecastFahrenheit);
 }
 
 function getOneDayForecastCelsius(dayIndex, allForecastData) {
@@ -88,6 +93,17 @@ function getOneDayForecastCelsius(dayIndex, allForecastData) {
     avgTemp: forecastDay.day.avgtemp_c,
     maxTemp: forecastDay.day.maxtemp_c,
     minTemp: forecastDay.day.mintemp_c,
+  };
+}
+
+function getOneDayForecastFahrenheit(dayIndex, allForecastData) {
+  const forecastDay = allForecastData.forecast.forecastday[dayIndex];
+  return {
+    condition: forecastDay.day.condition.text,
+    date: forecastDay.date,
+    avgTemp: forecastDay.day.avgtemp_f,
+    maxTemp: forecastDay.day.maxtemp_f,
+    minTemp: forecastDay.day.mintemp_f,
   };
 }
 
