@@ -92,6 +92,9 @@ svg {
 div.current-weather {
   grid-column: 1 / -1;
   padding: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .current-weather > div {
@@ -101,10 +104,31 @@ div.current-weather {
 }
 
 .name-and-temperature {
+  font-weight: 700;
   font-size: 3rem;
 }
 
 .condition-and-feels-like {
-  margin-top: 16px;
   font-size: 1.6rem;
+}
+
+div.other-data {
+  justify-content: space-around;
+  margin-top: auto;
+}
+
+div.other-data > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.other-data-title {
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+.other-data-value {
+  font-size: 1.2rem;
 }
