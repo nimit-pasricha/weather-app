@@ -40,4 +40,14 @@ async function processCurrentWeatherData(location) {
   console.log(currentWeatherDataFahrenheit);
 }
 
-export { processCurrentWeatherData };
+async function getForcast(location) {
+  const response = await fetch(
+    `http://api.weatherapi.com/v1/forecast.json?key=ecfed383b46d4625a7131757242806&q=${location}&days=3&aqi=no&alerts=yes`,
+    { mode: "cors" }
+  );
+  const forcastData = await response.json();
+  console.log(forcastData);
+  return forcastData;
+}
+
+export { processCurrentWeatherData, getForcast };
