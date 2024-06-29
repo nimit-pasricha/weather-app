@@ -1,2 +1,3 @@
 import "./style.css";
-import { getWeather } from "./weather-api";
+import { processCurrentWeatherData } from "./weather-api";
+processCurrentWeatherData("Abu Dhabi");
