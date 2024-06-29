@@ -10,8 +10,37 @@ body {
   height: 100%;
 }
 
+:root {
+  --search-bar-background-color: #d1d5db;
+}
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--search-bar-background-color);
+  border-radius: 50px;
+  padding: 16px 24px;
+  justify-content: space-between;
+}
+
+#location-search {
+  font-size: 1.2rem;
+  width: 100ch;
+  background-color: var(--search-bar-background-color);
+}
+
+button {
+  background-color: var(--search-bar-background-color);
+  border-radius: 50%;
+}
+
+svg {
+  height: 1.6rem;
 }

@@ -3,7 +3,7 @@
 async function fetchCurrentWeather(location) {
   const response = await fetch(
     `http://api.weatherapi.com/v1/current.json?key=ecfed383b46d4625a7131757242806&q=${location}&aqi=no`,
-    { mode: "cors" }
+    { mode: "cors" },
   );
   const weatherData = await response.json();
   return weatherData;
@@ -60,7 +60,7 @@ function getCurrentWeatherFahrenheit(allWeatherData) {
 async function fetchForecast(location) {
   const response = await fetch(
     `http://api.weatherapi.com/v1/forecast.json?key=ecfed383b46d4625a7131757242806&q=${location}&days=3&aqi=no&alerts=yes`,
-    { mode: "cors" }
+    { mode: "cors" },
   );
   const forcastData = await response.json();
   return forcastData;
@@ -78,7 +78,7 @@ async function processForecastData(location) {
   const threeDayForecastFahrenheit = [];
   for (let i = 0; i < numberOfDaysForecast; i++) {
     threeDayForecastFahrenheit.push(
-      getOneDayForecastFahrenheit(i, allForecastData)
+      getOneDayForecastFahrenheit(i, allForecastData),
     );
   }
   console.log(threeDayForecastFahrenheit);
