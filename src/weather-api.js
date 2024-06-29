@@ -9,12 +9,29 @@ async function getCurrentWeather(location) {
 
 async function processCurrentWeatherData(location) {
   const allWeatherData = await getCurrentWeather(location);
-  const locationData = {
+
+  const locationData = getLocationInformation(allWeatherData);
+
+  const currentWeatherDataCelsius = getCurrentWeatherCelsius(allWeatherData);
+
+  const currentWeatherDataFahrenheit =
+    getCurrentWeatherFahrenheit(allWeatherData);
+
+  console.log(locationData);
+  console.log(currentWeatherDataCelsius);
+  console.log(currentWeatherDataFahrenheit);
+}
+
+function getLocationInformation(allWeatherData) {
+  return {
     name: allWeatherData.location.name,
     country: allWeatherData.location.country,
     localTime: allWeatherData.location.localtime,
   };
-  const currentWeatherDataCelsius = {
+}
+
+function getCurrentWeatherCelsius(allWeatherData) {
+  return {
     condition: allWeatherData.current.condition.text,
     icon: allWeatherData.current.condition.icon,
     temperature: allWeatherData.current.temp_c,
@@ -24,8 +41,10 @@ async function processCurrentWeatherData(location) {
     uv: allWeatherData.current.uv,
     isDay: allWeatherData.current.is_day,
   };
+}
 
-  const currentWeatherDataFahrenheit = {
+function getCurrentWeatherFahrenheit(allWeatherData) {
+  return {
     condition: allWeatherData.current.condition.text,
     icon: allWeatherData.current.condition.icon,
     temperature: allWeatherData.current.temp_f,
@@ -35,9 +54,6 @@ async function processCurrentWeatherData(location) {
     uv: allWeatherData.current.uv,
     isDay: allWeatherData.current.is_day,
   };
-  console.log(locationData);
-  console.log(currentWeatherDataCelsius);
-  console.log(currentWeatherDataFahrenheit);
 }
 
 async function getForcast(location) {
