@@ -204,3 +204,23 @@ div.loading-screen {
 .forecast .loading-screen {
   font-size: 2rem;
 }
+
+.title-and-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.swap-unit-button {
+  font-size: 1.1rem;
+  border: solid var(--search-button-svg-color) 2px;
+  padding: 16px 32px;
+  border-radius: 8px;
+  background-color: transparent;
+  transition: 0.2s;
+}
+
+.swap-unit-button:hover {
+  background-color: var(--search-button-svg-color);
+  color: var(--search-button-background-color);
+}
