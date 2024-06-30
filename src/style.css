@@ -33,7 +33,7 @@ body {
   display: grid;
   justify-content: center;
   align-items: center;
-  grid-template-rows: 1fr 2fr 6fr 1fr;
+  grid-template-rows: 1fr 2fr 8fr 1fr;
   grid-template-columns: 1fr;
   gap: 16px;
   padding: 64px;
@@ -108,6 +108,7 @@ div.current-weather {
 .forecast > div {
   display: flex;
   justify-content: space-between;
+  gap: 16px;
   align-items: center;
 }
 
@@ -167,7 +168,7 @@ div.forecast {
 div.min-and-max-temperature {
   justify-content: space-evenly;
   margin-top: auto;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .min-and-max-temperature > div {
