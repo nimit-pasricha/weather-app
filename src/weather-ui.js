@@ -4,6 +4,7 @@ import {
   processForecastDataCelsius,
   processForecastDataFahrenheit,
 } from "./weather-api";
+import { format } from "date-fns";
 
 function searchForLocation() {
   const locationSearch = document.querySelector("input#location-search");
@@ -352,6 +353,12 @@ async function displayForecast(unit, location) {
     const forecastDiv = document.querySelector(`.day${i}.forecast`);
 
     const date = forecastData[i].date;
+    // for today's date, we should display "Today"
+    // instead of the day name
+    const todaysDay = format(new Date(), "EEEE");
+    const forecastDay = format(new Date(date), "EEEE");
+    const formattedDate = todaysDay === forecastDay ? "Today" : forecastDay;
+
     const condition = forecastData[i].condition;
     const avgTemperature = forecastData[i].avgTemp;
     const minTemp = forecastData[i].minTemp;
@@ -359,7 +366,7 @@ async function displayForecast(unit, location) {
 
     forecastDiv.innerHTML = `
     <div class="day-and-temperature">
-          <div class="day-name">${date}</div>
+          <div class="day-name">${formattedDate}</div>
           <div class="average-temperature">${avgTemperature}</div>
         </div>
         <div class="forecast-condition-and-feels-like">
