@@ -10,7 +10,6 @@ function searchForLocation() {
   const form = document.querySelector("form");
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    console.log(locationSearch.value);
     displayCurrentWeather("Celsius", locationSearch.value);
     form.reset();
   });
@@ -21,7 +20,6 @@ async function displayCurrentWeather(unit, location) {
     unit === "Celsius"
       ? await processCurrentWeatherDataCelsius(location)
       : await processCurrentWeatherDataFahrenheit(location);
-  console.log(currentWeatherData);
   const currentWeatherDiv = document.querySelector(".current-weather");
   currentWeatherDiv.innerHTML = `<div class="name-and-temperature">
           <div class="location-name"></div>

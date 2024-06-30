@@ -1,22 +1,23 @@
 // CURRENT WEATHER
 
 async function fetchCurrentWeather(location) {
+  console.log(location);
   const response = await fetch(
     `http://api.weatherapi.com/v1/current.json?key=ecfed383b46d4625a7131757242806&q=${location}&aqi=no`,
     { mode: "cors" }
   );
   const weatherData = await response.json();
+  console.log(weatherData);
   return weatherData;
 }
 
-async function processCurrentWeatherDataCelsius() {
+async function processCurrentWeatherDataCelsius(location) {
   const allWeatherData = await fetchCurrentWeather(location);
   const currentWeatherDataCelsius = filterNeededCelsiusData(allWeatherData);
-  console.log(allWeatherData);
   return currentWeatherDataCelsius;
 }
 
-async function processCurrentWeatherDataFahrenheit() {
+async function processCurrentWeatherDataFahrenheit(location) {
   const allWeatherData = await fetchCurrentWeather(location);
   const currentWeatherDataFahrenheit =
     filterNeededFahrenheitData(allWeatherData);
