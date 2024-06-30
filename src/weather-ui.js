@@ -10,10 +10,4 @@ function searchForLocation() {
   });
 }
 
-async function getWeatherIcon(location) {
-  const response = await processCurrentWeatherData(location);
-  const icon = response.icon;
-  console.log(icon);
-}
-
-export { searchForLocation, getWeatherIcon };
+export { searchForLocation };

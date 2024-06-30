@@ -16,7 +16,14 @@ async function processCurrentWeatherData(location) {
   const currentWeatherDataFahrenheit =
     getCurrentWeatherFahrenheit(allWeatherData);
 
-    return {locationData, currentWeatherDataCelsius, currentWeatherDataFahrenheit}
+  console.log(locationData);
+  console.log(currentWeatherDataCelsius);
+  console.log(currentWeatherDataFahrenheit);
+  return {
+    locationData,
+    currentWeatherDataCelsius,
+    currentWeatherDataFahrenheit,
+  };
 }
 
 function getLocationInformation(allWeatherData) {
@@ -77,7 +84,9 @@ async function processForecastData(location) {
       getOneDayForecastFahrenheit(i, allForecastData),
     );
   }
-  return {threeDayForecastCelsius, threeDayForecastFahrenheit}
+  console.log(threeDayForecastCelsius);
+  console.log(threeDayForecastFahrenheit);
+  return { threeDayForecastCelsius, threeDayForecastFahrenheit };
 }
 
 function getOneDayForecastCelsius(dayIndex, allForecastData) {
