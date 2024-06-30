@@ -1,3 +1,4 @@
 import "./style.css";
-import { searchForLocation } from "./weather-ui";
+import { displayDefaultWeather, searchForLocation } from "./weather-ui";
+displayDefaultWeather();
 searchForLocation();

@@ -359,4 +359,8 @@ async function displayCurrentWeather(unit, location) {
   humidity.textContent = currentWeatherData.humidity;
 }
 
-export { searchForLocation };
+function displayDefaultWeather() {
+  displayCurrentWeather("Celsius", "Madison");
+}
+
+export { searchForLocation, displayDefaultWeather };
