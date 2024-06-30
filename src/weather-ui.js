@@ -9,7 +9,7 @@ import { format } from "date-fns";
 function searchForLocation() {
   const locationSearch = document.querySelector("input#location-search");
   const form = document.querySelector("form");
-  form.addEventListener("submit", async (event) => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
     displayWeather("Celsius", locationSearch.value);
     form.reset();
@@ -18,10 +18,20 @@ function searchForLocation() {
 
 async function displayCurrentWeather(unit, location) {
   displayCurrentWeatherLoading();
-  const currentWeatherData =
-    unit === "Celsius"
-      ? await processCurrentWeatherDataCelsius(location)
-      : await processCurrentWeatherDataFahrenheit(location);
+
+  let currentWeatherData;
+  try {
+    currentWeatherData =
+      unit === "Celsius"
+        ? await processCurrentWeatherDataCelsius(location)
+        : await processCurrentWeatherDataFahrenheit(location);
+  } catch (err) {
+    console.log(err);
+    alert("Cannot find location");
+    displayDefaultWeather();
+    return;
+  }
+
   const currentWeatherDiv = document.querySelector(".current-weather");
 
   const locationName = currentWeatherData.name;
@@ -345,10 +355,16 @@ async function displayCurrentWeather(unit, location) {
 
 async function displayForecast(unit, location) {
   displayForecastLoading();
-  const forecastData =
-    unit === "Celsius"
-      ? await processForecastDataCelsius(location)
-      : await processForecastDataFahrenheit(location);
+
+  let forecastData;
+  try {
+    forecastData =
+      unit === "Celsius"
+        ? await processForecastDataCelsius(location)
+        : await processForecastDataFahrenheit(location);
+  } catch (err) {
+    console.log(err);
+  }
 
   for (let i = 0; i < forecastData.length; i++) {
     const forecastDiv = document.querySelector(`.day${i}.forecast`);

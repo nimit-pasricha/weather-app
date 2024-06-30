@@ -6,6 +6,7 @@ async function fetchCurrentWeather(location) {
     { mode: "cors" }
   );
   const weatherData = await response.json();
+  console.log(weatherData);
   return weatherData;
 }
 
