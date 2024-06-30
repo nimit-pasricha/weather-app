@@ -1,3 +1,4 @@
 import "./style.css";
-import { searchForLocation } from "./weather-ui";
+import { getWeatherIcon, searchForLocation } from "./weather-ui";
 searchForLocation();
+getWeatherIcon("Madison")

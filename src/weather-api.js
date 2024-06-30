@@ -6,7 +6,6 @@ async function fetchCurrentWeather(location) {
     { mode: "cors" },
   );
   const weatherData = await response.json();
-  console.log(weatherData);
   return weatherData;
 }
 
@@ -17,9 +16,7 @@ async function processCurrentWeatherData(location) {
   const currentWeatherDataFahrenheit =
     getCurrentWeatherFahrenheit(allWeatherData);
 
-  console.log(locationData);
-  console.log(currentWeatherDataCelsius);
-  console.log(currentWeatherDataFahrenheit);
+    return {locationData, currentWeatherDataCelsius, currentWeatherDataFahrenheit}
 }
 
 function getLocationInformation(allWeatherData) {
@@ -80,7 +77,7 @@ async function processForecastData(location) {
       getOneDayForecastFahrenheit(i, allForecastData),
     );
   }
-  console.log(threeDayForecastFahrenheit);
+  return {threeDayForecastCelsius, threeDayForecastFahrenheit}
 }
 
 function getOneDayForecastCelsius(dayIndex, allForecastData) {
