@@ -9,30 +9,22 @@ async function fetchCurrentWeather(location) {
   return weatherData;
 }
 
-async function processCurrentWeatherData(location) {
+async function processCurrentWeatherDataCelsius() {
   const allWeatherData = await fetchCurrentWeather(location);
-  const locationData = getLocationInformation(allWeatherData);
-  const currentWeatherDataCelsius = getCurrentWeatherCelsius(allWeatherData);
-  const currentWeatherDataFahrenheit =
-    getCurrentWeatherFahrenheit(allWeatherData);
-
-  console.log(locationData);
+  const currentWeatherDataCelsius = filterNeededCelsiusData(allWeatherData);
   console.log(currentWeatherDataCelsius);
+  return currentWeatherDataCelsius;
+}
+
+async function processCurrentWeatherDataFahrenheit() {
+  const allWeatherData = await fetchCurrentWeather(location);
+  const currentWeatherDataFahrenheit =
+    filterNeededFahrenheitData(allWeatherData);
   console.log(currentWeatherDataFahrenheit);
-  return {
-    locationData,
-    currentWeatherDataCelsius,
-    currentWeatherDataFahrenheit,
-  };
+  return currentWeatherDataFahrenheit;
 }
 
-function getLocationInformation(allWeatherData) {
-  return {
-    name: allWeatherData.location.name,
-  };
-}
-
-function getCurrentWeatherCelsius(allWeatherData) {
+function filterNeededCelsiusData(allWeatherData) {
   return {
     condition: allWeatherData.current.condition.text,
     temperature: allWeatherData.current.temp_c,
@@ -44,7 +36,7 @@ function getCurrentWeatherCelsius(allWeatherData) {
   };
 }
 
-function getCurrentWeatherFahrenheit(allWeatherData) {
+function filterNeededFahrenheitData(allWeatherData) {
   return {
     condition: allWeatherData.current.condition.text,
     temperature: allWeatherData.current.temp_f,
@@ -67,27 +59,33 @@ async function fetchForecast(location) {
   return forcastData;
 }
 
-async function processForecastData(location) {
+async function processForecastDataCelsius(location) {
   const allForecastData = await fetchForecast(location);
   const numberOfDaysForecast = 3;
 
   const threeDayForecastCelsius = [];
   for (let i = 0; i < numberOfDaysForecast; i++) {
-    threeDayForecastCelsius.push(getOneDayForecastCelsius(i, allForecastData));
+    threeDayForecastCelsius.push(filterDayForecastCelsius(i, allForecastData));
   }
   console.log(threeDayForecastCelsius);
+  return threeDayForecastCelsius;
+}
+
+async function processForecastDataFahrenheit(location) {
+  const allForecastData = await fetchForecast(location);
+  const numberOfDaysForecast = 3;
+
   const threeDayForecastFahrenheit = [];
   for (let i = 0; i < numberOfDaysForecast; i++) {
     threeDayForecastFahrenheit.push(
-      getOneDayForecastFahrenheit(i, allForecastData)
+      filterDayForecastFahrenheit(i, allForecastData)
     );
   }
-  console.log(threeDayForecastCelsius);
   console.log(threeDayForecastFahrenheit);
-  return { threeDayForecastCelsius, threeDayForecastFahrenheit };
+  return threeDayForecastFahrenheit;
 }
 
-function getOneDayForecastCelsius(dayIndex, allForecastData) {
+function filterDayForecastCelsius(dayIndex, allForecastData) {
   const forecastDay = allForecastData.forecast.forecastday[dayIndex];
   return {
     condition: forecastDay.day.condition.text,
@@ -98,7 +96,7 @@ function getOneDayForecastCelsius(dayIndex, allForecastData) {
   };
 }
 
-function getOneDayForecastFahrenheit(dayIndex, allForecastData) {
+function filterDayForecastFahrenheit(dayIndex, allForecastData) {
   const forecastDay = allForecastData.forecast.forecastday[dayIndex];
   return {
     condition: forecastDay.day.condition.text,
@@ -109,4 +107,9 @@ function getOneDayForecastFahrenheit(dayIndex, allForecastData) {
   };
 }
 
-export { processCurrentWeatherData, processForecastData };
+export {
+  processCurrentWeatherDataCelsius,
+  processCurrentWeatherDataFahrenheit,
+  processForecastDataFahrenheit,
+  processForecastDataCelsius,
+};
