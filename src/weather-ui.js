@@ -7,6 +7,7 @@ function searchForLocation() {
     event.preventDefault();
     await processCurrentWeatherData(locationSearch.value);
     await processForecastData(locationSearch.value);
+    form.reset();
   });
 }
 
