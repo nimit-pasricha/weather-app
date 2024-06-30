@@ -21,13 +21,32 @@ async function displayCurrentWeather(unit, location) {
       ? await processCurrentWeatherDataCelsius(location)
       : await processCurrentWeatherDataFahrenheit(location);
   const currentWeatherDiv = document.querySelector(".current-weather");
+
+  const locationName = currentWeatherData.name;
+
+  const temperatureUnit = unit === "Celsius" ? "°C" : "°F";
+  const currentTemperature = `${currentWeatherData.temperature}${temperatureUnit}`;
+
+  const feelsLike = `Feels like ${currentWeatherData.feelsLike}${temperatureUnit}`;
+
+  const currentCondition = currentWeatherData.condition;
+
+  const precipitationUnit = unit === "Celsius" ? "mm" : "inches";
+  const precipitation = `${currentWeatherData.precip} ${precipitationUnit}`;
+
+  const uv = currentWeatherData.uv;
+
+  const windSpeedUnit = unit === "Celsius" ? "kph" : "mph";
+  const wind = `${currentWeatherData.wind} ${windSpeedUnit}`;
+
+  const humidity = currentWeatherData.humidity;
   currentWeatherDiv.innerHTML = `<div class="name-and-temperature">
-          <div class="location-name"></div>
-          <div class="current-temperature"></div>
+          <div class="location-name">${locationName}</div>
+          <div class="current-temperature">${currentTemperature}</div>
         </div>
         <div class="condition-and-feels-like">
-          <div class="condition"></div>
-          <div class="feels-like"></div>
+          <div class="condition">${currentCondition}</div>
+          <div class="feels-like">${feelsLike}</div>
         </div>
         <div class="other-data">
           <div class="precipitation">
@@ -75,7 +94,7 @@ async function displayCurrentWeather(unit, location) {
                 </g>
               </svg>
             </div>
-            <div class="other-data-value"></div>
+            <div class="other-data-value">${precipitation}</div>
           </div>
           <div class="uv">
             <div class="other-data-header">
@@ -252,7 +271,7 @@ async function displayCurrentWeather(unit, location) {
                 </g>
               </svg>
             </div>
-            <div class="other-data-value"></div>
+            <div class="other-data-value">${uv}</div>
           </div>
           <div class="wind">
             <div class="other-data-header">
@@ -288,7 +307,7 @@ async function displayCurrentWeather(unit, location) {
                 </g>
               </svg>
             </div>
-            <div class="other-data-value"></div>
+            <div class="other-data-value">${wind}</div>
           </div>
           <div class="humidity">
             <div class="other-data-header">
@@ -326,37 +345,9 @@ async function displayCurrentWeather(unit, location) {
                 </g>
               </svg>
             </div>
-            <div class="other-data-value"></div>
+            <div class="other-data-value">${humidity}</div>
           </div>
         </div>`;
-  const locationName = document.querySelector(".location-name");
-  locationName.textContent = currentWeatherData.name;
-
-  const currentTemperature = document.querySelector(".current-temperature");
-  const temperatureUnit = unit === "Celsius" ? "°C" : "°F";
-  currentTemperature.textContent = `${currentWeatherData.temperature}${temperatureUnit}`;
-
-  const feelsLike = document.querySelector(".feels-like");
-  feelsLike.textContent = `Feels like ${currentWeatherData.feelsLike}${temperatureUnit}`;
-
-  const currentCondition = document.querySelector(".condition");
-  currentCondition.textContent = currentWeatherData.condition;
-
-  const precipitation = document.querySelector(
-    ".precipitation .other-data-value"
-  );
-  const precipitationUnit = unit === "Celsius" ? "mm" : "inches";
-  precipitation.textContent = `${currentWeatherData.precip} ${precipitationUnit}`;
-
-  const uv = document.querySelector(".uv .other-data-value");
-  uv.textContent = currentWeatherData.uv;
-
-  const wind = document.querySelector(".wind .other-data-value");
-  const windSpeedUnit = unit === "Celsius" ? "kph" : "mph";
-  wind.textContent = `${currentWeatherData.wind} ${windSpeedUnit}`;
-
-  const humidity = document.querySelector(".humidity .other-data-value");
-  humidity.textContent = currentWeatherData.humidity;
 }
 
 function displayDefaultWeather() {
