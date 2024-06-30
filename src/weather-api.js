@@ -1,13 +1,11 @@
 // CURRENT WEATHER
 
 async function fetchCurrentWeather(location) {
-  console.log(location);
   const response = await fetch(
     `http://api.weatherapi.com/v1/current.json?key=ecfed383b46d4625a7131757242806&q=${location}&aqi=no`,
     { mode: "cors" }
   );
   const weatherData = await response.json();
-  console.log(weatherData);
   return weatherData;
 }
 
@@ -28,12 +26,12 @@ function filterNeededCelsiusData(allWeatherData) {
   return {
     name: allWeatherData.location.name,
     condition: allWeatherData.current.condition.text,
-    temperature: allWeatherData.current.temp_c,
-    feelsLike: allWeatherData.current.feelslike_c,
-    wind: allWeatherData.current.wind_kph,
+    temperature: `${allWeatherData.current.temp_c}°C`,
+    feelsLike: `${allWeatherData.current.feelslike_c}°C`,
+    wind: `${allWeatherData.current.wind_kph} kph`,
     humidity: allWeatherData.current.humidity,
     uv: allWeatherData.current.uv,
-    precip: allWeatherData.current.precip_mm,
+    precip: `${allWeatherData.current.precip_mm} mm`,
   };
 }
 
@@ -41,12 +39,12 @@ function filterNeededFahrenheitData(allWeatherData) {
   return {
     name: allWeatherData.location.name,
     condition: allWeatherData.current.condition.text,
-    temperature: allWeatherData.current.temp_f,
-    feelsLike: allWeatherData.current.feelslike_f,
-    wind: allWeatherData.current.wind_mph,
+    temperature: `${allWeatherData.current.temp_f}°F`,
+    feelsLike: `${allWeatherData.current.feelslike_f}°F`,
+    wind: `${allWeatherData.current.wind_mph} mph`,
     humidity: allWeatherData.current.humidity,
     uv: allWeatherData.current.uv,
-    precip: allWeatherData.current.precip_in,
+    precip: `${allWeatherData.current.precip_in} in`,
   };
 }
 
@@ -90,9 +88,9 @@ function filterDayForecastCelsius(dayIndex, allForecastData) {
   return {
     condition: forecastDay.day.condition.text,
     date: forecastDay.date,
-    avgTemp: forecastDay.day.avgtemp_c,
-    maxTemp: forecastDay.day.maxtemp_c,
-    minTemp: forecastDay.day.mintemp_c,
+    avgTemp: `${forecastDay.day.avgtemp_c}°C`,
+    maxTemp: `${forecastDay.day.maxtemp_c}°C`,
+    minTemp: `${forecastDay.day.mintemp_c}°C`,
   };
 }
 
@@ -101,9 +99,9 @@ function filterDayForecastFahrenheit(dayIndex, allForecastData) {
   return {
     condition: forecastDay.day.condition.text,
     date: forecastDay.date,
-    avgTemp: forecastDay.day.avgtemp_f,
-    maxTemp: forecastDay.day.maxtemp_f,
-    minTemp: forecastDay.day.mintemp_f,
+    avgTemp: `${forecastDay.day.avgtemp_f}°F`,
+    maxTemp: `${forecastDay.day.maxtemp_f}°F`,
+    minTemp: `${forecastDay.day.mintemp_f}°F`,
   };
 }
 

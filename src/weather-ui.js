@@ -25,20 +25,17 @@ async function displayCurrentWeather(unit, location) {
 
   const locationName = currentWeatherData.name;
 
-  const temperatureUnit = unit === "Celsius" ? "°C" : "°F";
-  const currentTemperature = `${currentWeatherData.temperature}${temperatureUnit}`;
+  const currentTemperature = currentWeatherData.temperature;
 
-  const feelsLike = `Feels like ${currentWeatherData.feelsLike}${temperatureUnit}`;
+  const feelsLike = `Feels like ${currentWeatherData.feelsLike}`;
 
   const currentCondition = currentWeatherData.condition;
 
-  const precipitationUnit = unit === "Celsius" ? "mm" : "inches";
-  const precipitation = `${currentWeatherData.precip} ${precipitationUnit}`;
+  const precipitation = currentWeatherData.precip;
 
   const uv = currentWeatherData.uv;
 
-  const windSpeedUnit = unit === "Celsius" ? "kph" : "mph";
-  const wind = `${currentWeatherData.wind} ${windSpeedUnit}`;
+  const wind = currentWeatherData.wind;
 
   const humidity = currentWeatherData.humidity;
 
@@ -404,7 +401,7 @@ async function displayForecast(unit, location) {
 }
 
 function displayDefaultWeather() {
-  displayCurrentWeather("Celsius", "Madison");
+  displayCurrentWeather("Fahrenheit", "Madison");
   displayForecast("Celsius", "Madison");
 }
 
