@@ -122,6 +122,8 @@ div.current-weather {
 div.other-data {
   justify-content: space-around;
   margin-top: auto;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 div.other-data > div {
