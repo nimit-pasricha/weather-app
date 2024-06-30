@@ -188,3 +188,19 @@ div.min-and-max-temperature {
 .down-arrow {
   fill: #c2410c;
 }
+
+div.loading-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.current-weather .loading-screen {
+  font-size: 4rem;
+}
+
+.forecast .loading-screen {
+  font-size: 2rem;
+}

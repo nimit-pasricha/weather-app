@@ -11,13 +11,13 @@ function searchForLocation() {
   const form = document.querySelector("form");
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    displayCurrentWeather("Celsius", locationSearch.value);
-    displayForecast("Celsius", locationSearch.value);
+    displayWeather("Celsius", locationSearch.value);
     form.reset();
   });
 }
 
 async function displayCurrentWeather(unit, location) {
+  displayCurrentWeatherLoading();
   const currentWeatherData =
     unit === "Celsius"
       ? await processCurrentWeatherDataCelsius(location)
@@ -344,6 +344,7 @@ async function displayCurrentWeather(unit, location) {
 }
 
 async function displayForecast(unit, location) {
+  displayForecastLoading();
   const forecastData =
     unit === "Celsius"
       ? await processForecastDataCelsius(location)
@@ -354,7 +355,7 @@ async function displayForecast(unit, location) {
 
     const date = forecastData[i].date;
     // for today's date, we should display "Today"
-    // instead of the day name
+    // instead of the day name.
     const todaysDay = format(new Date(), "EEEE");
     const forecastDay = format(new Date(date), "EEEE");
     const formattedDate = todaysDay === forecastDay ? "Today" : forecastDay;
@@ -403,6 +404,27 @@ async function displayForecast(unit, location) {
 function displayDefaultWeather() {
   displayCurrentWeather("Celsius", "Madison");
   displayForecast("Celsius", "Madison");
+}
+
+async function displayWeather(unit, location) {
+  displayCurrentWeather(unit, location);
+  displayForecast(unit, location);
+}
+
+function displayCurrentWeatherLoading() {
+  const currentWeatherDiv = document.querySelector(".current-weather");
+  currentWeatherDiv.innerHTML = `
+    <div class="loading-screen">Loading</div>
+  `;
+}
+
+function displayForecastLoading() {
+  const forecastDivs = document.querySelectorAll(".forecast");
+  forecastDivs.forEach((forecastDiv) => {
+    forecastDiv.innerHTML = `
+    <div class="loading-screen">Loading</div>
+  `;
+  });
 }
 
 export { searchForLocation, displayDefaultWeather };
