@@ -24,19 +24,12 @@ async function displayCurrentWeather(unit, location) {
   const currentWeatherDiv = document.querySelector(".current-weather");
 
   const locationName = currentWeatherData.name;
-
   const currentTemperature = currentWeatherData.temperature;
-
   const feelsLike = `Feels like ${currentWeatherData.feelsLike}`;
-
   const currentCondition = currentWeatherData.condition;
-
   const precipitation = currentWeatherData.precip;
-
   const uv = currentWeatherData.uv;
-
   const wind = currentWeatherData.wind;
-
   const humidity = currentWeatherData.humidity;
 
   currentWeatherDiv.innerHTML = `<div class="name-and-temperature">
@@ -354,7 +347,7 @@ async function displayForecast(unit, location) {
     unit === "Celsius"
       ? await processForecastDataCelsius(location)
       : await processForecastDataFahrenheit(location);
-  // console.log(forecastData);
+
   for (let i = 0; i < forecastData.length; i++) {
     const forecastDiv = document.querySelector(`.day${i}.forecast`);
 
@@ -401,7 +394,7 @@ async function displayForecast(unit, location) {
 }
 
 function displayDefaultWeather() {
-  displayCurrentWeather("Fahrenheit", "Madison");
+  displayCurrentWeather("Celsius", "Madison");
   displayForecast("Celsius", "Madison");
 }
 
