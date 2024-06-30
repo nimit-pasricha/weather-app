@@ -435,7 +435,9 @@ async function displayForecast(unit, location) {
 }
 
 function displayDefaultWeather() {
-  displayWeather("Celsius", "Madison");
+  const unitButton = document.querySelector(".swap-unit-button");
+  unitButton.textContent = "Celsius";
+  displayWeather(unitButton.textContent, "Madison");
 }
 
 async function displayWeather(unit, location) {
