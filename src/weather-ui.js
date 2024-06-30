@@ -11,6 +11,7 @@ function searchForLocation() {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     displayCurrentWeather("Celsius", locationSearch.value);
+    displayForecast("Celsius", locationSearch.value);
     form.reset();
   });
 }
@@ -40,6 +41,7 @@ async function displayCurrentWeather(unit, location) {
   const wind = `${currentWeatherData.wind} ${windSpeedUnit}`;
 
   const humidity = currentWeatherData.humidity;
+
   currentWeatherDiv.innerHTML = `<div class="name-and-temperature">
           <div class="location-name">${locationName}</div>
           <div class="current-temperature">${currentTemperature}</div>
@@ -350,8 +352,60 @@ async function displayCurrentWeather(unit, location) {
         </div>`;
 }
 
+async function displayForecast(unit, location) {
+  const forecastData =
+    unit === "Celsius"
+      ? await processForecastDataCelsius(location)
+      : await processForecastDataFahrenheit(location);
+  // console.log(forecastData);
+  for (let i = 0; i < forecastData.length; i++) {
+    const forecastDiv = document.querySelector(`.day${i}.forecast`);
+
+    const date = forecastData[i].date;
+    const condition = forecastData[i].condition;
+    const avgTemperature = forecastData[i].avgTemp;
+    const minTemp = forecastData[i].minTemp;
+    const maxTemp = forecastData[i].maxTemp;
+
+    forecastDiv.innerHTML = `
+    <div class="day-and-temperature">
+          <div class="day-name">${date}</div>
+          <div class="average-temperature">${avgTemperature}</div>
+        </div>
+        <div class="forecast-condition-and-feels-like">
+          <div class="">${condition}</div>
+        </div>
+        <div class="min-and-max-temperature">
+          <div class="min-temperature">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              class="down-arrow"
+            >
+              <title>arrow-down-bold</title>
+              <path d="M9,4H15V12H19.84L12,19.84L4.16,12H9V4Z" />
+            </svg>
+            <div class="temperature-value">${minTemp}</div>
+          </div>
+          <div class="max-temperature">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              class="up-arrow"
+            >
+              <title>arrow-up-bold</title>
+              <path d="M15,20H9V12H4.16L12,4.16L19.84,12H15V20Z" />
+            </svg>
+            <div class="temperature-value">${maxTemp}</div>
+          </div>
+        </div>
+    `;
+  }
+}
+
 function displayDefaultWeather() {
   displayCurrentWeather("Celsius", "Madison");
+  displayForecast("Celsius", "Madison");
 }
 
 export { searchForLocation, displayDefaultWeather };
