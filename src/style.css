@@ -139,3 +139,8 @@ div.other-data > div {
 .other-data-value {
   font-size: 1.3rem;
 }
+
+.other-data-header {
+  display: flex;
+  gap: 16px;
+}
