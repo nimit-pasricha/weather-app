@@ -333,7 +333,8 @@ async function displayCurrentWeather(unit, location) {
   locationName.textContent = currentWeatherData.name;
 
   const currentTemperature = document.querySelector(".current-temperature");
-  currentTemperature.textContent = currentWeatherData.temperature;
+  const temperatureUnit = unit === "Celsius" ? "°C" : "°F";
+  currentTemperature.textContent = `${currentWeatherData.temperature}${temperatureUnit}`;
 
   const currentCondition = document.querySelector(".condition");
   currentCondition.textContent = currentWeatherData.condition;
