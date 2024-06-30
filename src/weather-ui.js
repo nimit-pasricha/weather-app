@@ -6,12 +6,29 @@ import {
 } from "./weather-api";
 import { format } from "date-fns";
 
+function swapUnit() {
+  const unitButton = document.querySelector(".swap-unit-button");
+  unitButton.addEventListener("click", () => {
+    unitButton.textContent =
+      unitButton.textContent === "Celsius" ? "Fahrenheit" : "Celsius";
+    const locationName = document.querySelector(".location-name").textContent;
+    const newUnit = unitButton.textContent;
+    displayWeather(newUnit, locationName);
+  });
+}
+
+function getUnit() {
+  const unitButton = document.querySelector(".swap-unit-button");
+  return unitButton.textContent;
+}
+
 function searchForLocation() {
   const locationSearch = document.querySelector("input#location-search");
   const form = document.querySelector("form");
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    displayWeather("Celsius", locationSearch.value);
+    const unit = getUnit();
+    displayWeather(unit, locationSearch.value);
     form.reset();
   });
 }
@@ -442,4 +459,4 @@ function displayForecastLoading() {
   });
 }
 
-export { searchForLocation, displayDefaultWeather };
+export { searchForLocation, displayDefaultWeather, swapUnit };
