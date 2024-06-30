@@ -402,8 +402,7 @@ async function displayForecast(unit, location) {
 }
 
 function displayDefaultWeather() {
-  displayCurrentWeather("Celsius", "Madison");
-  displayForecast("Celsius", "Madison");
+  displayWeather("Celsius", "Madison");
 }
 
 async function displayWeather(unit, location) {
